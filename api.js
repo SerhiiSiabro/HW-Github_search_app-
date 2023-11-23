@@ -1,6 +1,6 @@
 class API {
   apiUrl = "https://api.github.com";
-  #token = "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";
+  #token = "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";
 
   async getUser(userName) {
     const response = await fetch(`${this.apiUrl}/users/${userName}`, {
