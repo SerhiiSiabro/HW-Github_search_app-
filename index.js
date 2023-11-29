@@ -91,12 +91,11 @@ const handleInput = async (event) => {
     if (!value) {
       return;
     }
-
     const user = await api.getUser(value);
-    const followers = await api.getFollowers(value, 6);
-    console.log(followers);
-    const repositories = await api.getRepositories(value, 5);
-    console.log(repositories);
+    const [followers, repositories] = await Promise.all([
+      api.getFollowers(value, 6),
+      api.getRepositories(value, 5),
+    ]);
     showProfile(user, repositories, followers);
   } catch (error) {
     showAlert(error.message, "danger");
